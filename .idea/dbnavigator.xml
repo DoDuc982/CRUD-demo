@@ -8,7 +8,7 @@
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="true" />
+    <show-object-properties value="false" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
@@ -35,7 +35,32 @@ insert into product(name, price, description) values
 insert into product(description, name, price) values 
     ('new', 'Iphone 13',4200000),
     ('new', 'Iphone 14',5200000),
-    ('new', 'Iphone 14 pro max',6200000);]]></console>
+    ('new', 'Iphone 14 pro max',6200000);
+create table category(
+    id int primary key auto_increment,
+    name varchar(50)
+);
+alter table product add column category_id int;
+alter table product add foreign key (category_id) references category(id);
+insert into category(name) values ('Iphone'), ('Samsung');
+SELECT * FROM category
+CREATE PROCEDURE insert_product(
+    IN inputName VARCHAR(50),
+    IN inputPrice DOUBLE,
+    IN inputDescription VARCHAR(50)
+)
+BEGIN
+    INSERT INTO product(name, price, description) VALUES (inputName, inputPrice, inputDescription);
+END;
+
+
+CREATE PROCEDURE delete_category(
+    IN inputId int
+)
+BEGIN
+    UPDATE product SET category_id = null where category_id = inputId;
+    delete from category where id = inputId;
+END]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -43,6 +68,9 @@ insert into product(description, name, price) values
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="8b549dce-c5ec-49a9-bcfc-11507e1ab8c2" dataset="product_management.category" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
