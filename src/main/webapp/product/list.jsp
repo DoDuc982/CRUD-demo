@@ -22,6 +22,7 @@
                 <td><a href="/product?action=view&id=${product.id}">${product.name}</a></td>
                 <td>${product.price}</td>
                 <td>${product.description}</td>
+                <td>${product.categoryId}</td>
                 <td>
                     <a class="btn btn-info" href="/product?action=edit&id=${product.id}">Sửa
                         <i class="fas fa-edit"></i>
@@ -35,6 +36,8 @@
             </tbody>
         </c:forEach>
     </table>
+    <a href="/">Quay lại trang chủ</a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </div>
 </body>

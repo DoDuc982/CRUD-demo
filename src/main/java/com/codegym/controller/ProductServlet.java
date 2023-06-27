@@ -98,9 +98,7 @@ public class ProductServlet extends HttpServlet {
                 createProduct(req, resp);
             }
             case "delete" -> {
-                int id = Integer.parseInt(req.getParameter("id"));
-                productService.deleteById(id);
-                resp.sendRedirect("/product");
+                deleteProduct(req, resp);
             }
             case "edit" -> {
                 editProduct(req, resp);
@@ -108,12 +106,20 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    private void deleteProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        productService.deleteById(id);
+        resp.sendRedirect("/product");
+    }
+
     private void editProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         double price = Double.parseDouble(req.getParameter("price"));
         String description = req.getParameter("description");
+        String categoryId = req.getParameter("categoryId");
         Product product = new Product(name,price,description);
+        product.setCategoryId(Integer.parseInt(categoryId));
         boolean isUpdated = productService.updateById(id,product);
         String message;
         if (isUpdated){

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductDao implements IProductDao
 {
-    private Connection connection = DBConnection.getConnection();
+    private final Connection connection = DBConnection.getConnection();
     public ProductDao(){}
 
     @Override

@@ -20,11 +20,6 @@
                 <td>${category.id}</td>
                 <td><a href="/category?action=view&id=${category.id}">${category.name}</a></td>
                 <td>
-                    <a class="btn btn-info" href="/category?action=edit&id=${category.id}">Sửa
-                        <i class="fas fa-edit"></i>
-                    </a>
-                </td>
-                <td>
                     <a class="btn btn-danger" href="/category?action=delete&id=${category.id}">Xóa
                         <i class="fas fa-edit"> </i>
                     </a>

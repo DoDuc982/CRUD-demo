@@ -8,7 +8,7 @@
 <body>
 <div class="container-fluid">
     <h1>Danh sách sản phẩm</h1>
-    <a href="/product?action=create">Chi tiết sản phẩm</a>
+    <a href="/product">Quay lại trang trước</a>
     <form>
         <div class="mb-3">
             <label for="exampleInputEmail" class="form-label">Mã sản phẩm</label>
@@ -26,6 +26,10 @@
              <label for="exampleInputEmail" class="form-label">Mô tả sản phẩm</label>
              <input type="text" class="form-control" id="exampleInputEmail" name="description" value="${product.description}">
         </div>
+        <div class="mb-3">
+                     <label for="exampleInputEmail" class="form-label">Danh mục sản phẩm</label>
+                     <input type="text" class="form-control" id="exampleInputEmail" name="description" value="${product.categoryId}">
+                </div>
     </form>
         <c:forEach var="product" items="${products}">
             <tbody>
@@ -37,6 +41,7 @@
                 <td><a href="/product?action=delete&id=${product.id}">Xóa</a></td>
             </tbody>
         </c:forEach>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </div>
 </body>

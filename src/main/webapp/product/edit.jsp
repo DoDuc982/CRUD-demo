@@ -28,7 +28,7 @@
       <div class="mb-3">
               <label for="categoryId" class="form-label">Danh mục sản phẩm</label>
 
-      <select class="form-control" name="categogyId" id="category">
+      <select class="form-control" name="categoryId" id="category">
                     <c:forEach var="category" items="${categories}">
                       <option value="${category.id}">${category.name}</option>
                     </c:forEach>
@@ -36,6 +36,8 @@
       </div>
       <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
     </form>
+    <a href="/">Quay lại trang chủ</a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </div>
 </body>

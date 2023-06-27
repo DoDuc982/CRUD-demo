@@ -23,7 +23,7 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public boolean create(Category category) {
-        return false;
+        return categoryDao.create(category);
     }
 
     @Override

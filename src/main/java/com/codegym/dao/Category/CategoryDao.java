@@ -31,11 +31,35 @@ public class CategoryDao implements ICategoryDao{
 
     @Override
     public Category findById(int id) {
-        return null;
+        Category category = new Category();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM category WHERE id = ?"
+            );
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String name = resultSet.getString("name");
+                category = new Category(id,name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return category;
     }
 
     @Override
     public boolean create(Category category) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO category(name) VALUES (?)"
+            );
+            preparedStatement.setString(1, category.getName());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 

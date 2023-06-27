@@ -31,16 +31,25 @@ public class CategoryServlet extends HttpServlet {
         String action = req.getParameter("action");
         if (action == null) action = "";
         switch (action) {
-            case "delete" ->{
-                int id = Integer.parseInt(req.getParameter("id"));
-                Category category = categoryService.findById(id);
-                req.setAttribute("category", category);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/category/delete.jsp");
-                requestDispatcher.forward(req,resp);
-            }
+            case "delete" -> showDeleteCategory(req, resp);
+            case "create" -> showCreateForm(req, resp);
+
             case "view" -> showListByCategoryId(req, resp);
             default -> showListCategory(req, resp);
         }
+    }
+
+    private static void showCreateForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/category/create.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void showDeleteCategory(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Category category = categoryService.findById(id);
+        req.setAttribute("category", category);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/category/delete.jsp");
+        requestDispatcher.forward(req, resp);
     }
 
     private void showListByCategoryId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -64,10 +73,16 @@ public class CategoryServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "delete" -> {
-                deleteCategory(req, resp);
-            }
+            case "delete" -> deleteCategory(req, resp);
+            case "create" -> createCategory(req, resp);
         }
+    }
+
+    private void createCategory(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String name = req.getParameter("name");
+        Category category = new Category(name);
+        categoryService.create(category);
+        resp.sendRedirect("/category");
     }
 
     private void deleteCategory(HttpServletRequest req, HttpServletResponse resp) throws IOException {
